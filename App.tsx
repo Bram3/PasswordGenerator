@@ -7,6 +7,9 @@ import Slider from "./src/components/Slider";
 import Field from "./src/components/Field";
 import Button from "./src/components/Button";
 
+import Generate from "./src/utils/Generator";
+import CopyPassword from "./src/utils/Copy";
+
 export default function App() {
   const [length, setLength] = useState(5);
   const [symbols, setSymbols] = useState(true);
@@ -15,8 +18,15 @@ export default function App() {
   const [uppercase, setUppercase] = useState(true);
   const [password, setPassword] = useState("");
 
-  const handlePress = () => {
-    alert("press");
+  const handlePress = async () => {
+    const pass = await Generate({
+      length: length,
+      symbols: symbols,
+      numbers: numbers,
+      lowercase: lowercase,
+      uppercase: uppercase,
+    });
+    setPassword(pass);
   };
 
   return (
@@ -55,7 +65,7 @@ export default function App() {
         <PasswordText center large>
           {password}
         </PasswordText>
-        <Copy>
+        <Copy onPress={() => CopyPassword({ text: password })}>
           <AntDesign name="copy1" size={40} color="#0099ff" />
           <Text large>Copy Password</Text>
         </Copy>
