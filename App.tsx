@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { AntDesign } from "@expo/vector-icons";
 
-import Text from "./components/Text";
-import Slider from "./components/Slider";
-import Field from "./components/Field";
-import Button from "./components/Button";
+import Text from "./src/components/Text";
+import Slider from "./src/components/Slider";
+import Field from "./src/components/Field";
+import Button from "./src/components/Button";
 
 export default function App() {
   const [length, setLength] = useState(5);
