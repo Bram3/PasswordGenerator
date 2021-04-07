@@ -5,7 +5,7 @@ interface Props {
   text: string;
 }
 
-export default function CopyPassword({ text }: Props): void {
+export default function copy({ text }: Props): void {
   Clipboard.setString(text);
   ToastAndroid.showWithGravityAndOffset(
     "Copied to clipboard!",

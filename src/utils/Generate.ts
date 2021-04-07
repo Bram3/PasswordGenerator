@@ -6,7 +6,7 @@ interface Options {
   uppercase: boolean;
 }
 
-export default function Generate({
+export default function generate({
   length,
   symbols,
   numbers,
