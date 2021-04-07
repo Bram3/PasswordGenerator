@@ -1,21 +1,91 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { AntDesign } from "@expo/vector-icons";
+
+import Text from "./components/Text";
+import Slider from "./components/Slider";
+import Field from "./components/Field";
+import Button from "./components/Button";
 
 export default function App() {
+  const [length, setLength] = useState(5);
+  const [symbols, setSymbols] = useState(true);
+  const [numbers, setNumbers] = useState(true);
+  const [lowercase, setLowercase] = useState(true);
+  const [uppercase, setUppercase] = useState(true);
+  const [password, setPassword] = useState("");
+
+  const handlePress = () => {
+    alert("press");
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Container>
+      <Main>
+        <Text title center>
+          Password Generator.
+        </Text>
+        <Length>
+          <Text large center>
+            Lenght: {length}
+          </Text>
+          <Slider onChange={setLength} />
+        </Length>
+        <Field
+          value={symbols}
+          onChange={setSymbols}
+          text="Include Symbols ( e.g. @#$% )"
+        />
+        <Field
+          value={numbers}
+          onChange={setNumbers}
+          text="Include Numbers ( e.g. 123456 )"
+        />
+        <Field
+          value={lowercase}
+          onChange={setLowercase}
+          text="Include Lowercase Characters ( e.g. abcdefgh )"
+        />
+        <Field
+          value={uppercase}
+          onChange={setUppercase}
+          text="Include Uppercase Characters ( e.g. ABCDEFGH )"
+        />
+        <Button text="Generate" onPress={handlePress} />
+        <PasswordText center large>
+          {password}
+        </PasswordText>
+        <Copy>
+          <AntDesign name="copy1" size={40} color="#0099ff" />
+          <Text large>Copy Password</Text>
+        </Copy>
+      </Main>
+    </Container>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Copy = styled.TouchableOpacity`
+  margin-top: 30px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+const PasswordText = styled(Text)`
+  padding-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+`;
+
+const Container = styled.ScrollView`
+  flex: 1;
+  background-color: #f2f6ff;
+`;
+
+const Main = styled.View`
+  margin-top: 70px;
+`;
+
+const Length = styled.View`
+  margin-top: 30px;
+`;
